@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:my_nikah_booking/screens/main/screens/article/article_screen.dart';
 import 'package:my_nikah_booking/screens/main/screens/home/home_screen.dart';
 import 'package:my_nikah_booking/screens/main/screens/profile/profile_screen.dart';
+import 'package:my_nikah_booking/screens/main/screens/wedding_schedule/wedding_schedule.dart';
 import 'package:my_nikah_booking/screens/main/widgets/main_tab_route.dart';
 import 'package:my_nikah_booking/widgets/app_icons.dart';
 
@@ -12,6 +13,9 @@ Route<dynamic>? _mainTabRouter(String routeName, RouteSettings settings) {
 
     case ArticleScreen.routeName:
       return MaterialPageRoute(builder: (_) => const ArticleScreen());
+
+    case WeddingScheduleScreen.routeName:
+      return MaterialPageRoute(builder: (_) => const WeddingScheduleScreen());
 
     case ProfileScreen.routeName:
       return MaterialPageRoute(builder: (_) => const ProfileScreen());
@@ -32,6 +36,7 @@ class _MainTabScreenState extends State<MainTabScreen> {
   final _navigatorKeys = {
     HomeScreen.routeName: GlobalKey<NavigatorState>(),
     ArticleScreen.routeName: GlobalKey<NavigatorState>(),
+    WeddingScheduleScreen.routeName: GlobalKey<NavigatorState>(),
     ProfileScreen.routeName: GlobalKey<NavigatorState>(),
   };
 
@@ -54,9 +59,15 @@ class _MainTabScreenState extends State<MainTabScreen> {
             icon: AppIcons.news,
             routeName: routeName,
           );
+        case WeddingScheduleScreen.routeName:
+          return _TabItem(
+            title: 'Jadwal Nikah',
+            icon: AppIcons.event,
+            routeName: routeName,
+          );
         case ProfileScreen.routeName:
           return _TabItem(
-            title: 'Profile',
+            title: 'Akun',
             icon: AppIcons.user,
             routeName: routeName,
           );
