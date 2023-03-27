@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:my_nikah_booking/screens/main/screens/wedding_schedule/widgets/wedding_schedule_list.dart';
 import 'package:my_nikah_booking/widgets/scaffold_background.dart';
 
 class WeddingScheduleScreen extends StatelessWidget {
@@ -15,8 +14,12 @@ class WeddingScheduleScreen extends StatelessWidget {
           automaticallyImplyLeading: false,
           title: const Text("Jadwal Nikah"),
         ),
-        body: Center(
-          child: Text("Jadwal Pernikahan"),
+        body: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 8),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: const [WeddingScheduleList()],
+          ),
         ),
       ),
     );

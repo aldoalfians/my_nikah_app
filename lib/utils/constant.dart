@@ -12,4 +12,6 @@ class ImagePath {
 
   static const routeIllustration = '$imagesFolder/route.png';
   static const pinIllustration = '$imagesFolder/pin.png';
+  static const wishlistIllustration = '$imagesFolder/wishlist.png';
+  static const usertIllustration = '$imagesFolder/user.png';
 }

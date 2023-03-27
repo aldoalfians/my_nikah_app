@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_nikah_booking/screens/main/screens/article/widgets/article_list.dart';
 import 'package:my_nikah_booking/widgets/scaffold_background.dart';
 
 class ArticleScreen extends StatelessWidget {
@@ -11,10 +12,18 @@ class ArticleScreen extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
-          title: const Text("Artikel"),
+          title: const Text("Berita & Kegiatan"),
         ),
-        body: Center(
-          child: Text("Artikel"),
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: const [
+                ArticleList(),
+              ],
+            ),
+          ),
         ),
       ),
     );
