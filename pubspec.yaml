@@ -18,6 +18,7 @@ dependencies:
   flutter_native_splash: ^2.2.19
   http: ^0.13.5
   textless: ^6.6.6
+  transparent_image: ^2.0.0
 
 dev_dependencies:
   flutter_test:
