@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:my_nikah_booking/screens/auth/login/login_screen.dart';
+import 'package:my_nikah_booking/screens/auth/register/register_screen.dart';
+import 'package:my_nikah_booking/widgets/app_outlined_button.dart';
 import 'package:textless/textless.dart';
 import 'package:my_nikah_booking/utils/extension/context_extension.dart';
 import 'package:my_nikah_booking/widgets/scaffold_background.dart';
@@ -16,17 +19,19 @@ class AuthMainScreen extends StatelessWidget {
         body: Column(
           children: [
             Expanded(
-              child: Stack(
-                children: [
-                  Positioned(
-                    child: Image.asset(
-                      "assets/splash-screen/my-nikah.png",
-                      height: 200,
-                      width: 200,
-                      fit: BoxFit.fitWidth,
+              child: Center(
+                child: Stack(
+                  children: [
+                    Positioned(
+                      child: Image.asset(
+                        "assets/splash-screen/my-nikah.png",
+                        height: 200,
+                        width: 200,
+                        fit: BoxFit.fitWidth,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
             Container(
@@ -57,29 +62,29 @@ class AuthMainScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  // Padding(
-                  //   padding:
-                  //       const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                  //   child: AppElevatedButton(
-                  //     large: true,
-                  //     child: "Login".text,
-                  //     type: ElevatedButtonType.secondary,
-                  //     onPressed: () =>
-                  //         context.rootNav().pushNamed(LoginScreen.routeName),
-                  //   ),
-                  // ),
-                  // Padding(
-                  //   padding:
-                  //       const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                  //   child: AppOutlinedButton(
-                  //     large: true,
-                  //     child: "Sign Up".text,
-                  //     type: OutlinedButtonType.secondary,
-                  //     onPressed: () => context
-                  //         .rootNav()
-                  //         .pushNamed(RegistrationScreen.routeName),
-                  //   ),
-                  // ),
+                  Padding(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                    child: AppElevatedButton(
+                      large: true,
+                      child: "Masuk".text,
+                      type: ElevatedButtonType.primary,
+                      onPressed: () =>
+                          context.rootNav().pushNamed(LoginScreen.routeName),
+                    ),
+                  ),
+                  Padding(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                    child: AppOutlinedButton(
+                      large: true,
+                      child: "Daftar Akun".text,
+                      type: OutlinedButtonType.primary,
+                      onPressed: () => context
+                          .rootNav()
+                          .pushNamed(RegistrationScreen.routeName),
+                    ),
+                  ),
                 ],
               ),
             ),
