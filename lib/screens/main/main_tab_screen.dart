@@ -26,6 +26,7 @@ Route<dynamic>? _mainTabRouter(String routeName, RouteSettings settings) {
 }
 
 class MainTabScreen extends StatefulWidget {
+  static const String routeName = '/main-tab';
   const MainTabScreen({super.key});
 
   @override
