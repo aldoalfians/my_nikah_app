@@ -10,4 +10,7 @@ extension ContextExtension on BuildContext {
   Color get cardColor => theme.cardColor;
   Color get textColor => theme.textTheme.bodyLarge!.color!;
   Color? get textSecondaryColor => theme.textTheme.bodyMedium!.color;
+
+  NavigatorState nav() => Navigator.of(this);
+  NavigatorState rootNav() => Navigator.of(this, rootNavigator: true);
 }
