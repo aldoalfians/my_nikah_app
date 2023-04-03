@@ -15,10 +15,10 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (_) => const AuthMainScreen(),
         );
-      case LoginScreen.routeName:
-        return MaterialPageRoute(
-          builder: (_) => const LoginScreen(),
-        );
+      // case LoginScreen.routeName:
+      //   return MaterialPageRoute(
+      //     builder: (_) => LoginScreen(userRepository: true,),
+      //   );
       case RegistrationScreen.routeName:
         return MaterialPageRoute(
           builder: (_) => const RegistrationScreen(),

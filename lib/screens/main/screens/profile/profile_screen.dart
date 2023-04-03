@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:my_nikah_booking/logic/blocs/auth_bloc/auth_bloc.dart';
 import 'package:my_nikah_booking/widgets/scaffold_background.dart';
 import 'package:my_nikah_booking/screens/main/screens/profile/widgets/profile_info_card.dart';
 import 'package:textless/textless.dart';
@@ -29,7 +31,9 @@ class ProfileScreen extends StatelessWidget {
                 large: true,
                 child: "Logout".text,
                 type: OutlinedButtonType.primary,
-                onPressed: () {},
+                onPressed: () {
+                  BlocProvider.of<AuthBloc>(context).add(LoggedOut());
+                },
               ),
             ),
           ],
