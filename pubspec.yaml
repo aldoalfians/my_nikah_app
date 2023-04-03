@@ -11,12 +11,15 @@ environment:
 dependencies:
   bloc: ^8.1.1
   cupertino_icons: ^1.0.2
+  dio: ^5.1.1
   equatable: ^2.0.0
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.2
   flutter_native_splash: ^2.2.19
+  flutter_secure_storage: ^5.0.2
   http: ^0.13.5
+  rxdart: ^0.27.7
   textless: ^6.6.6
   transparent_image: ^2.0.0
 
