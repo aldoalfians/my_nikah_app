@@ -1,9 +1,13 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
+import 'package:http/http.dart' as http;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class UserRepository {
-  static String mainUrl = "https://reqres.in";
-  var loginUrl = '$mainUrl/api/login';
+  static String mainUrl = "http://10.0.2.2:5000";
+  var loginUrl = '$mainUrl/login';
+  var registUrl = '$mainUrl/regist';
 
   final FlutterSecureStorage storage = FlutterSecureStorage();
   final Dio _dio = Dio();
@@ -27,12 +31,46 @@ class UserRepository {
     storage.deleteAll();
   }
 
+  Future<dynamic> regist(String email, String name, String nik, String password,
+      String confirmPassword) async {
+    Response response = await _dio.post(registUrl, data: {
+      "email": email,
+      "name": name,
+      "nik": nik,
+      "password": password,
+      "confirmPassword": confirmPassword,
+      "role": "user"
+    });
+
+    return response.data;
+  }
+
   Future<String> login(String email, String password) async {
     Response response = await _dio.post(loginUrl, data: {
       "email": email,
       "password": password,
     });
 
-    return response.data["token"];
+    return response.data["uuid"];
   }
+
+  // Future<String?> login(String email, String password) async {
+  //   final response = await http.post(
+  //     Uri.parse('http://10.0.2.2:5000/login'),
+  //     headers: <String, String>{
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: jsonEncode(<String, String>{
+  //       'email': email,
+  //       'password': password,
+  //     }),
+  //   );
+  //   if (response.statusCode == 200) {
+  //     final data = jsonDecode(response.body);
+  //     print(data);
+  //     return data['uuid'];
+  //   } else {
+  //     return null;
+  //   }
+  // }
 }

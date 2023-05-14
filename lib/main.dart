@@ -5,6 +5,7 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:my_nikah_booking/app.dart';
 import 'package:my_nikah_booking/data/repositories/auth_repository.dart';
 import 'package:my_nikah_booking/logic/blocs/auth_bloc/auth_bloc.dart';
+import 'package:my_nikah_booking/logic/blocs/register_bloc/register_bloc.dart';
 
 class SimpleBlocObserver extends BlocObserver {
   @override
@@ -38,13 +39,22 @@ Future<void> main() async {
   ]);
 
   runApp(
-    BlocProvider<AuthBloc>(
-      create: (context) {
-        return AuthBloc(userRepository: userRepository)
-          ..add(
-            AppStarted(),
-          );
-      },
+    MultiBlocProvider(
+      providers: [
+        BlocProvider<AuthBloc>(
+          create: (context) {
+            return AuthBloc(userRepository: userRepository)
+              ..add(
+                AppStarted(),
+              );
+          },
+        ),
+        BlocProvider<RegisterBloc>(
+          create: (context) {
+            return RegisterBloc(userRepository: userRepository);
+          },
+        ),
+      ],
       child: App(userRepository: userRepository),
     ),
   );

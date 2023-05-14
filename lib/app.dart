@@ -27,7 +27,7 @@ class App extends StatelessWidget {
             return const MainTabScreen();
           }
           if (state is AuthUnauthenticated) {
-            return LoginScreen(userRepository: userRepository);
+            return const AuthMainScreen();
           }
           if (state is AuthLoading) {
             return Scaffold(

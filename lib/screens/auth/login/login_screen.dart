@@ -13,8 +13,11 @@ import 'package:textless/textless.dart';
 
 class LoginScreen extends StatelessWidget {
   static const routeName = '/login';
-  late UserRepository userRepository;
-  LoginScreen({Key? key, required this.userRepository}) : super(key: key);
+  final UserRepository userRepository;
+  LoginScreen({
+    required this.userRepository,
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,35 +29,42 @@ class LoginScreen extends StatelessWidget {
               userRepository: userRepository,
               authBloc: BlocProvider.of<AuthBloc>(context));
         },
-        child: Column(
-          children: [
-            Expanded(
-              child: Center(
-                child: Stack(
-                  children: [
-                    Positioned(
-                      child: Image.asset(
-                        "assets/splash-screen/my-nikah.png",
-                        height: 200,
-                        width: 200,
-                        fit: BoxFit.fitWidth,
-                      ),
+        child: BlocBuilder<AuthBloc, AuthState>(
+          builder: (context, state) {
+            if (state is AuthAuthenticated) {
+              return MainTabScreen();
+            }
+            return Column(
+              children: [
+                Expanded(
+                  child: Center(
+                    child: Stack(
+                      children: [
+                        Positioned(
+                          child: Image.asset(
+                            "assets/splash-screen/my-nikah.png",
+                            height: 200,
+                            width: 200,
+                            fit: BoxFit.fitWidth,
+                          ),
+                        ),
+                      ],
                     ),
-                  ],
+                  ),
                 ),
-              ),
-            ),
-            Container(
-              height: 350,
-              decoration: BoxDecoration(
-                color: context.theme.cardColor,
-                borderRadius: const BorderRadius.vertical(
-                  top: Radius.circular(16),
+                Container(
+                  height: 400,
+                  decoration: BoxDecoration(
+                    color: context.theme.cardColor,
+                    borderRadius: const BorderRadius.vertical(
+                      top: Radius.circular(16),
+                    ),
+                  ),
+                  child: LoginForm(),
                 ),
-              ),
-              child: LoginForm(userRepository: userRepository),
-            ),
-          ],
+              ],
+            );
+          },
         ),
       ),
     );

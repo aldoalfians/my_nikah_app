@@ -4,22 +4,23 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_nikah_booking/data/repositories/auth_repository.dart';
 import 'package:my_nikah_booking/logic/blocs/login_bloc/login_bloc.dart';
+import 'package:my_nikah_booking/screens/auth/register/register_screen.dart';
 import 'package:my_nikah_booking/screens/main/main_tab_screen.dart';
 import 'package:my_nikah_booking/utils/extension/context_extension.dart';
 import 'package:my_nikah_booking/widgets/app_elevated_button.dart';
 import 'package:textless/textless.dart';
 
 class LoginForm extends StatefulWidget {
-  final UserRepository userRepository;
-
-  const LoginForm({Key? key, required this.userRepository}) : super(key: key);
+  const LoginForm({
+    Key? key,
+  }) : super(key: key);
 
   @override
-  State<LoginForm> createState() => _LoginFormState(userRepository);
+  State<LoginForm> createState() => _LoginFormState();
 }
 
 class _LoginFormState extends State<LoginForm> {
-  _LoginFormState(UserRepository userRepository);
+  _LoginFormState();
 
   final _nikController = TextEditingController();
   final _passwordController = TextEditingController();
@@ -127,7 +128,7 @@ class _LoginFormState extends State<LoginForm> {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       SizedBox(
-                        height: 45,
+                        height: 150,
                         child: state is LoginLoading
                             ? Column(
                                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -152,11 +153,25 @@ class _LoginFormState extends State<LoginForm> {
                                   )
                                 ],
                               )
-                            : AppElevatedButton(
-                                large: true,
-                                type: ElevatedButtonType.primary,
-                                onPressed: _onLoginButtonPressed,
-                                child: "Masuk".text,
+                            : Column(
+                                children: [
+                                  AppElevatedButton(
+                                    large: true,
+                                    type: ElevatedButtonType.primary,
+                                    onPressed: _onLoginButtonPressed,
+                                    child: "Masuk".text,
+                                  ),
+                                  SizedBox(
+                                    height: 20,
+                                  ),
+                                  TextButton(
+                                    onPressed: () => context
+                                        .rootNav()
+                                        .pushNamed(
+                                            RegistrationScreen.routeName),
+                                    child: "Register".text.bold.size(16),
+                                  ),
+                                ],
                               ),
                       ),
                     ],
