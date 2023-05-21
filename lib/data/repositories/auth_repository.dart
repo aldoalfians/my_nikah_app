@@ -53,24 +53,4 @@ class UserRepository {
 
     return response.data["uuid"];
   }
-
-  // Future<String?> login(String email, String password) async {
-  //   final response = await http.post(
-  //     Uri.parse('http://10.0.2.2:5000/login'),
-  //     headers: <String, String>{
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: jsonEncode(<String, String>{
-  //       'email': email,
-  //       'password': password,
-  //     }),
-  //   );
-  //   if (response.statusCode == 200) {
-  //     final data = jsonDecode(response.body);
-  //     print(data);
-  //     return data['uuid'];
-  //   } else {
-  //     return null;
-  //   }
-  // }
 }
