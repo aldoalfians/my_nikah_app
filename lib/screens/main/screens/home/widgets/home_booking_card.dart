@@ -5,11 +5,13 @@ import 'package:textless/textless.dart';
 class HomeBookingCard extends StatelessWidget {
   final String title;
   final String imageSrc;
+  final void Function()? onTap;
 
   const HomeBookingCard({
     Key? key,
     required this.title,
     required this.imageSrc,
+    this.onTap,
   }) : super(key: key);
 
   @override
@@ -32,7 +34,7 @@ class HomeBookingCard extends StatelessWidget {
       ),
       child: Card(
         child: InkWell(
-          onTap: () {},
+          onTap: onTap,
           borderRadius: const BorderRadius.all(
             Radius.circular(16),
           ),

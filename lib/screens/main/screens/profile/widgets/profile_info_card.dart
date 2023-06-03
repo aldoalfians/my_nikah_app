@@ -27,12 +27,8 @@ class ProfileInfoCard extends StatelessWidget {
               leading: Image.asset(
                 ImagePath.usertIllustration,
               ),
-              title: 'Aldo Alfiansyah'.text.size(16).semiBold,
-              subtitle: "KPD21384757".text.bold.size(14).color(Colors.grey),
-              trailing: Icon(
-                Icons.edit,
-                color: context.primaryColor,
-              ),
+              title: 'User'.text.size(16).semiBold,
+              subtitle: "Info User".text.bold.size(14).color(Colors.grey),
             ),
           ),
         ),

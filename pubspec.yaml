@@ -22,6 +22,7 @@ dependencies:
   rxdart: ^0.27.7
   textless: ^6.6.6
   transparent_image: ^2.0.0
+  intl: ^0.18.1
 
 dev_dependencies:
   flutter_test:

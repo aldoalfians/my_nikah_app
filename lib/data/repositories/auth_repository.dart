@@ -3,11 +3,13 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:my_nikah_booking/data/models/login_user.dart';
 
 class UserRepository {
-  static String mainUrl = "http://10.0.2.2:5000";
+  static String mainUrl = "http://192.168.1.9:5000";
   var loginUrl = '$mainUrl/login';
   var registUrl = '$mainUrl/regist';
+  var logoutUr = '$mainUrl/logout';
 
   final FlutterSecureStorage storage = FlutterSecureStorage();
   final Dio _dio = Dio();
@@ -27,6 +29,7 @@ class UserRepository {
   }
 
   Future<void> deleteToken() async {
+    await _dio.delete(logoutUr);
     storage.delete(key: "token");
     storage.deleteAll();
   }
@@ -45,12 +48,17 @@ class UserRepository {
     return response.data;
   }
 
-  Future<String> login(String email, String password) async {
+  Future<LoginUser> login(String email, String password) async {
     Response response = await _dio.post(loginUrl, data: {
       "email": email,
       "password": password,
     });
 
-    return response.data["uuid"];
+    return LoginUser.fromJson(response.data);
   }
+
+  // Future<dynamic> logout() async {
+  //   Response response = await _dio.delete(logoutUr);
+  //   return response.data;
+  // }
 }

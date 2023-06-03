@@ -10,15 +10,11 @@ abstract class AuthEvent extends Equatable {
 class AppStarted extends AuthEvent {}
 
 class LoggedIn extends AuthEvent {
-  final String token;
-
-  const LoggedIn({required this.token});
-
-  @override
-  List<Object> get props => [token];
+  final LoginUser loginUser;
+  const LoggedIn(this.loginUser);
 
   @override
-  String toString() => 'LoggedIn { token: $token }';
+  List<Object> get props => [loginUser];
 }
 
 class SignUp extends AuthEvent {
@@ -32,5 +28,7 @@ class SignUp extends AuthEvent {
   @override
   String toString() => 'SignUp { token: $token }';
 }
+
+class Logout extends AuthEvent {}
 
 class LoggedOut extends AuthEvent {}

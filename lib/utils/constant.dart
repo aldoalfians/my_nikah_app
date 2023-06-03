@@ -14,4 +14,7 @@ class ImagePath {
   static const pinIllustration = '$imagesFolder/pin.png';
   static const wishlistIllustration = '$imagesFolder/wishlist.png';
   static const usertIllustration = '$imagesFolder/user.png';
+
+  static const insidetIllustration = '$imagesFolder/inside.jpg';
+  static const outsidetIllustration = '$imagesFolder/outside.jpg';
 }

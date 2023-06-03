@@ -43,7 +43,7 @@ class AppElevatedButton extends StatelessWidget {
   Widget build(BuildContext context) {
     if (large == true) {
       return SizedBox(
-        height: 46,
+        height: 56,
         width: double.infinity,
         child: _buildButton(context),
       );

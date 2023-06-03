@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
+import 'package:my_nikah_booking/data/models/login_user.dart';
 import 'package:my_nikah_booking/data/repositories/auth_repository.dart';
 import 'package:my_nikah_booking/logic/blocs/login_bloc/login_bloc.dart';
 
@@ -22,7 +23,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
     on<LoggedIn>((event, emit) async {
       emit(AuthLoading());
-      await userRepository.persisteToken(event.token);
       emit(AuthAuthenticated());
     });
 

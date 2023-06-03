@@ -5,6 +5,7 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:my_nikah_booking/app.dart';
 import 'package:my_nikah_booking/data/repositories/auth_repository.dart';
 import 'package:my_nikah_booking/logic/blocs/auth_bloc/auth_bloc.dart';
+import 'package:my_nikah_booking/logic/blocs/get_user_bloc/get_user_bloc.dart';
 import 'package:my_nikah_booking/logic/blocs/register_bloc/register_bloc.dart';
 
 class SimpleBlocObserver extends BlocObserver {
@@ -32,6 +33,7 @@ Future<void> main() async {
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   Bloc.observer = SimpleBlocObserver();
   final userRepository = UserRepository();
+  final GetUserBloc _getUserBloc = GetUserBloc();
 
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
@@ -54,6 +56,9 @@ Future<void> main() async {
             return RegisterBloc(userRepository: userRepository);
           },
         ),
+        BlocProvider<GetUserBloc>(create: (context) {
+          return _getUserBloc;
+        })
       ],
       child: App(userRepository: userRepository),
     ),
