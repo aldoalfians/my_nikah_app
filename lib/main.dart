@@ -7,6 +7,9 @@ import 'package:my_nikah_booking/data/repositories/auth_repository.dart';
 import 'package:my_nikah_booking/logic/blocs/auth_bloc/auth_bloc.dart';
 import 'package:my_nikah_booking/logic/blocs/get_user_bloc/get_user_bloc.dart';
 import 'package:my_nikah_booking/logic/blocs/register_bloc/register_bloc.dart';
+import 'package:my_nikah_booking/screens/main/screens/wedding_schedule/logic/bloc/detail_booking/detail_booking_bloc.dart';
+import 'package:my_nikah_booking/screens/modules/booking/data/logic/blocs/booking_bloc/booking_bloc.dart';
+import 'package:my_nikah_booking/screens/modules/booking/data/repositories/booking_repository.dart';
 
 class SimpleBlocObserver extends BlocObserver {
   @override
@@ -33,7 +36,9 @@ Future<void> main() async {
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   Bloc.observer = SimpleBlocObserver();
   final userRepository = UserRepository();
+  final bookingRepository = BookingRepository();
   final GetUserBloc _getUserBloc = GetUserBloc();
+  final DetailBookingBloc detailBookingBloc = DetailBookingBloc();
 
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
@@ -56,9 +61,24 @@ Future<void> main() async {
             return RegisterBloc(userRepository: userRepository);
           },
         ),
-        BlocProvider<GetUserBloc>(create: (context) {
-          return _getUserBloc;
-        })
+        BlocProvider<GetUserBloc>(
+          create: (context) {
+            return _getUserBloc;
+          },
+        ),
+        BlocProvider<DetailBookingBloc>(
+          create: (context) {
+            return detailBookingBloc;
+          },
+        ),
+        BlocProvider<BookingBloc>(
+          create: (context) {
+            return BookingBloc()
+              ..add(
+                BookingListStarted(),
+              );
+          },
+        ),
       ],
       child: App(userRepository: userRepository),
     ),

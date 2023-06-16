@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:my_nikah_booking/screens/main/screens/article/article_screen.dart';
 import 'package:my_nikah_booking/screens/main/screens/home/home_screen.dart';
 import 'package:my_nikah_booking/screens/main/screens/profile/profile_screen.dart';
-import 'package:my_nikah_booking/screens/main/screens/wedding_schedule/wedding_schedule.dart';
+import 'package:my_nikah_booking/screens/main/screens/wedding_schedule/wedding_schedule_screen.dart';
 import 'package:my_nikah_booking/screens/main/widgets/main_tab_route.dart';
 import 'package:my_nikah_booking/widgets/app_icons.dart';
 

@@ -29,23 +29,25 @@ class RegistrationScreen extends StatelessWidget {
           return Column(
             children: [
               Expanded(
-                child: Center(
-                  child: Stack(
-                    children: [
-                      Positioned(
-                        child: Image.asset(
-                          "assets/splash-screen/my-nikah.png",
-                          height: 200,
-                          width: 200,
-                          fit: BoxFit.fitWidth,
+                child: SingleChildScrollView(
+                  child: Center(
+                    child: Stack(
+                      children: [
+                        Positioned(
+                          child: Image.asset(
+                            "assets/splash-screen/my-nikah.png",
+                            height: 200,
+                            width: 200,
+                            fit: BoxFit.fitWidth,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),
               Container(
-                height: 380,
+                height: 508,
                 clipBehavior: Clip.antiAlias,
                 decoration: BoxDecoration(
                   color: context.theme.cardColor,
@@ -53,7 +55,7 @@ class RegistrationScreen extends StatelessWidget {
                     top: Radius.circular(16),
                   ),
                 ),
-                child: SingleChildScrollView(child: RegisterForm()),
+                child: RegisterForm(),
               ),
             ],
           );

@@ -169,7 +169,7 @@ class _LoginFormState extends State<LoginForm> {
                                         .rootNav()
                                         .pushNamed(
                                             RegistrationScreen.routeName),
-                                    child: "Register".text.bold.size(16),
+                                    child: "Daftar".text.bold.size(16),
                                   ),
                                 ],
                               ),

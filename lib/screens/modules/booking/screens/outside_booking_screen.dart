@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:my_nikah_booking/screens/modules/booking/data/logic/blocs/booking_bloc/booking_bloc.dart';
+import 'package:my_nikah_booking/screens/modules/booking/screens/done_booking.dart';
 import 'package:my_nikah_booking/screens/modules/booking/widgets/outside_form.dart';
 import 'package:my_nikah_booking/utils/constant.dart';
 import 'package:my_nikah_booking/widgets/scaffold_background.dart';
@@ -70,68 +73,102 @@ class _OutsideBookingScreenState extends State<OutsideBookingScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CustomScrollView(
-        controller: _scrollController,
-        slivers: [
-          AnimatedBuilder(
-            animation: _animationController,
-            builder: (context, child) {
-              return SliverAppBar(
-                floating: false,
-                pinned: false,
-                expandedHeight: _bgTopHeight,
-                backgroundColor: _appBarBgColorTween?.value ??
-                    Theme.of(context).primaryColor,
-                flexibleSpace: Stack(
-                  children: [
-                    Positioned.fill(
-                      child: Hero(
-                        tag: "outside",
-                        child: Image.asset(
-                          ImagePath.outsidetIllustration,
-                          fit: BoxFit.cover,
+      backgroundColor: Colors.white,
+      body: BlocBuilder<BookingBloc, BookingState>(
+        builder: (context, state) {
+          if (state is BookingLoading) {
+            return Scaffold(
+              body: Container(
+                color: Colors.white,
+                width: MediaQuery.of(context).size.width,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    SizedBox(
+                      height: 25.0,
+                      width: 25.0,
+                      child: CircularProgressIndicator(
+                        valueColor: AlwaysStoppedAnimation<Color>(
+                          Colors.amberAccent,
                         ),
+                        strokeWidth: 4.0,
                       ),
-                    ),
-                    Positioned(
-                      child: Container(
-                        height: 33,
-                        decoration: const BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.vertical(
-                            top: Radius.circular(40),
-                          ),
-                        ),
-                      ),
-                      bottom: -7,
-                      left: 0,
-                      right: 0,
-                    ),
+                    )
                   ],
                 ),
-              );
-            },
-          ),
-          SliverList(
-            delegate: SliverChildListDelegate(
-              [
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      "Nikah di luar KUA".text.bold.size(20),
-                      const SizedBox(
-                        height: 8,
+              ),
+            );
+          }
+          if (state is BookingCompeleted) {
+            Future.delayed(const Duration(seconds: 5));
+            return const DoneBooking();
+          }
+
+          return CustomScrollView(
+            controller: _scrollController,
+            slivers: [
+              AnimatedBuilder(
+                animation: _animationController,
+                builder: (context, child) {
+                  return SliverAppBar(
+                    floating: false,
+                    pinned: false,
+                    expandedHeight: _bgTopHeight,
+                    backgroundColor: _appBarBgColorTween?.value ??
+                        Theme.of(context).primaryColor,
+                    flexibleSpace: Stack(
+                      children: [
+                        Positioned.fill(
+                          child: Hero(
+                            tag: "outside",
+                            child: Image.asset(
+                              ImagePath.outsidetIllustration,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          child: Container(
+                            height: 33,
+                            decoration: const BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.vertical(
+                                top: Radius.circular(40),
+                              ),
+                            ),
+                          ),
+                          bottom: -7,
+                          left: 0,
+                          right: 0,
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              ),
+              SliverList(
+                delegate: SliverChildListDelegate(
+                  [
+                    Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          "Nikah di luar KUA".text.bold.size(20),
+                          const SizedBox(
+                            height: 8,
+                          ),
+                          const OustsideForm(),
+                        ],
                       ),
-                      const OustsideForm(),
-                    ],
-                  ),
-                )
-              ],
-            ),
-          ),
-        ],
+                    )
+                  ],
+                ),
+              ),
+            ],
+          );
+        },
       ),
     );
   }

@@ -52,7 +52,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       'Selamat Datang,'.text.size(14).regular,
                       const SizedBox(height: 4),
                       Text(
-                        "${state.getUser}",
+                        "${state.getUser.name}",
                         style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
