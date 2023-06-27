@@ -43,7 +43,7 @@ class _OutsideBookingScreenState extends State<OutsideBookingScreen>
         }
       });
 
-    WidgetsBinding.instance?.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       _appBarBgColorTween = ColorTween(
         begin: Theme.of(context).primaryColor.withOpacity(0),
         end: Theme.of(context).primaryColor,

@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:my_nikah_booking/screens/main/screens/article/models/get_articles.dart';
+import 'package:my_nikah_booking/screens/main/screens/article/models/detail_article.dart';
 
 class ArticleRepository {
   static String mainUrl = "http://10.0.2.2:5000";
@@ -21,5 +22,20 @@ class ArticleRepository {
 
     print(response.data);
     return GetArticles.fromJson(response.data);
+  }
+
+  Future<DetailArticle> fetchArticleDetail(String uuid) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? token = prefs.getString('x-auth-token');
+    Response response = await _dio.get('$article/$uuid',
+        options: Options(
+          headers: {
+            'Content-Type': 'application/json; charset=UTF-8',
+            'x-auth-token': token!,
+          },
+        ));
+
+    print(response.data);
+    return DetailArticle.fromJson(response.data);
   }
 }

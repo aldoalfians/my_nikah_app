@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:my_nikah_booking/screens/main/screens/article/article_detail_screen.dart';
 import 'package:my_nikah_booking/screens/main/screens/article/logic/bloc/get_article/get_article_bloc.dart';
 import 'package:my_nikah_booking/screens/main/screens/article/widgets/article_list.dart';
+import 'package:my_nikah_booking/screens/main/screens/wedding_schedule/logic/bloc/detail_booking/detail_booking_bloc.dart';
 import 'package:my_nikah_booking/widgets/image_placeholder.dart';
 import 'package:my_nikah_booking/widgets/scaffold_background.dart';
 import 'package:textless/textless.dart';
@@ -17,6 +19,7 @@ class ArticleScreen extends StatefulWidget {
 
 class _ArticleScreenState extends State<ArticleScreen> {
   final GetArticleBloc getArticleBloc = GetArticleBloc();
+  final DetailBookingBloc detailBookingBloc = DetailBookingBloc();
 
   @override
   void initState() {
@@ -33,7 +36,7 @@ class _ArticleScreenState extends State<ArticleScreen> {
           title: const Text("Berita & Kegiatan"),
         ),
         body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: const EdgeInsets.only(left: 16, right: 16, top: 32),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
@@ -78,38 +81,56 @@ class _ArticleScreenState extends State<ArticleScreen> {
                                 borderRadius: BorderRadius.circular(16),
                               ),
                               margin: const EdgeInsets.only(bottom: 16),
-                              child: Padding(
-                                padding: const EdgeInsets.all(16),
-                                child: Column(
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.stretch,
-                                  children: [
-                                    '${stateData?[index].title}'
-                                        .text
-                                        .semiBold
-                                        .size(16),
-                                    const SizedBox(height: 4),
-                                    'Baca selengkapnya...'.text.size(12),
-                                    const SizedBox(height: 16),
-                                    Container(
-                                      clipBehavior: Clip.antiAlias,
-                                      height: 160,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(16),
-                                      ),
-                                      child: ImagePlaceholder(
-                                        child: Hero(
-                                          tag: stateData?[index].uuid as String,
-                                          child: FadeInImage.memoryNetwork(
-                                            placeholder: kTransparentImage,
-                                            image:
-                                                '${stateData?[index].imageUrl}',
-                                            fit: BoxFit.cover,
+                              child: InkWell(
+                                onTap: () {
+                                  detailBookingBloc.add(
+                                    DetailBookingPressed(
+                                        uuid: stateData?[index].uuid as String),
+                                  );
+
+                                  Navigator.of(context).push(
+                                    MaterialPageRoute(builder: (context) {
+                                      return ArticleDetailScreen(
+                                        uuid: stateData?[index].uuid as String,
+                                      );
+                                    }),
+                                  );
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.all(16),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.stretch,
+                                    children: [
+                                      '${stateData?[index].title}'
+                                          .text
+                                          .semiBold
+                                          .size(16),
+                                      const SizedBox(height: 4),
+                                      'Baca selengkapnya...'.text.size(12),
+                                      const SizedBox(height: 16),
+                                      Container(
+                                        clipBehavior: Clip.antiAlias,
+                                        height: 160,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(16),
+                                        ),
+                                        child: ImagePlaceholder(
+                                          child: Hero(
+                                            tag: stateData?[index].uuid
+                                                as String,
+                                            child: FadeInImage.memoryNetwork(
+                                              placeholder: kTransparentImage,
+                                              image:
+                                                  '${stateData?[index].imageUrl}',
+                                              fit: BoxFit.cover,
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                    )
-                                  ],
+                                      )
+                                    ],
+                                  ),
                                 ),
                               ),
                             );
